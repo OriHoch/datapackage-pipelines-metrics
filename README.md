@@ -1,6 +1,6 @@
 # Datapackage Pipelines Metrics plugin
 
-[![Build Status](https://travis-ci.org/OriHoch/datapackage-pipelines-metrics.svg?branch=master)](https://travis-ci.org/OriHoch/datapackage-pipelines-metrics)
+[![Build Status](https://api.travis-ci.org/OriHoch/datapackage-pipelines-metrics.svg)](https://travis-ci.org/OriHoch/datapackage-pipelines-metrics)
 [![PyPI version](https://badge.fury.io/py/datapackage-pipelines-metrics.svg)](https://badge.fury.io/py/datapackage-pipelines-metrics)
 
 Allow to gather metrics about running pipelines
