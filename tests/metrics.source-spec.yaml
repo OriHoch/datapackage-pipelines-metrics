@@ -4,3 +4,8 @@ noise:
       parameters:
         name: metrics_tests
     - run: noise
+    - run: metrics.send
+      parameters:
+        tags:
+          foo: bar
+        row-batch-size: 1000

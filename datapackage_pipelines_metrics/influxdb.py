@@ -2,7 +2,7 @@ import os, requests, logging
 
 
 def get_config():
-    return os.environ.get("DPP_INFLUXDB_URL"), os.environ.get("DPP_INFLUXDB_DB")
+    return os.environ.get("DPP_INFLUXDB_URL"), os.environ.get("DPP_INFLUXDB_DB", "dpp")
 
 def send_metric(measurement, tags, values, num_retries=0):
     url, db = get_config()

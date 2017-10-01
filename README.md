@@ -1,14 +1,51 @@
 # Datapackage Pipelines Metrics plugin
 
-Allow to gather near real time metrics about running pipelines
+Allow to gather metrics about running pipelines
+
+Send the following measurements:
+
+* `processed_row` - sent after rows were processed, tracks the number of processed rows over time
+  * this metric is sent in batches of 100 rows, see below on how to modify this behavior
+* `processed_resources` - sent after each resources is done processing, sends a value of the number of rows processed
+
+Metrics are tagged automatically based on datapackage and resource name, or you can can provide the tags as parameters to the `metrics.send` processor.
 
 Supported backends:
 
-* [InfluxDB](https://www.influxdata.com/)
+* [InfluxDB](https://www.influxdata.com/) - a simple, lightweight time-series DB
+
+**Feel free to open a PR to support additional backends**
 
 ## Usage
 
-TBD
+Install the plugin in an existing Datapackage Pipelines project: `pip install datapackage-pipelines-metrics`
+
+Set the following environment variables to enable the plugin:
+
+* `DPP_INFLUXDB_URL` - URL to the InfluxDB (e.g. http://influxdb:8086)
+* (optional) `DPP_INFLUXDB_DB` - Name of the InfluxDB database to send the metrics to (default = dpp)
+* (optional) `DPP_INFLUXDB_ROWS_BATCH_SIZE` - how many rows to batch together to a single metric (default = 100)
+
+If the url variable is not set - the plugin will have no effect.
+
+There are 2 main ways to integrate this plugin into an existing Datapackage Pipelines installation, you can also combine them, depending on what you need
+
+### Automatic metrics for all pipelines
+
+Uses a datapackage pipelines source spec file to inject the metrics sending processor at the end of every pipeline.
+
+To use it - just rename you existing pipeline-spec.yaml to metrics.source-spec.yaml
+
+### Manual metrics using metrics.send processor
+
+Use the `metrics.send` processor in your pipeline specs.
+
+By default it will tag measurements
+
+It accepts the following pipeline parameters:
+  * (optional) `tags` - key-value pairs which will be used to tag the metric (default = datapackage and resource names)
+  * (optional) `row-batch-size` - how many rows to batch together to a single metric (default = 100)
+
 
 ## Development
 

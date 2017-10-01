@@ -1,10 +1,10 @@
 from datapackage_pipelines.wrapper import ingest, spew
 from datapackage_pipelines.utilities.resources import PROP_STREAMING
-import logging
+import logging, os
 from datapackage_pipelines_metrics.influxdb import send_metric
 
 
-DEFAULT_ROW_METRICS_BATCH_SIZE=100
+DEFAULT_ROW_METRICS_BATCH_SIZE=int(os.environ.get("DPP_INFLUXDB_ROWS_BATCH_SIZE", "100"))
 
 
 parameters, datapackage, resources = ingest()
