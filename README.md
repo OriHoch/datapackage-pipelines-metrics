@@ -21,7 +21,9 @@ Supported backends:
 
 ## Usage
 
-Install the plugin in an existing Datapackage Pipelines project: `pip install datapackage-pipelines-metrics`
+Install the plugin in an existing Datapackage Pipelines project:
+
+`pip install datapackage-pipelines-metrics`
 
 Set the following environment variables to enable the plugin:
 
