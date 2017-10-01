@@ -1,0 +1,6 @@
+noise:
+  pipeline:
+    - run: add_metadata
+      parameters:
+        name: metrics_tests
+    - run: noise
