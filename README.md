@@ -41,6 +41,8 @@ Uses a datapackage pipelines source spec file to inject the metrics sending proc
 
 To use it - just rename you existing pipeline-spec.yaml to metrics.source-spec.yaml
 
+If you already use a pipeline source spec, you can easily append the metrics using the `append_metrics` function which accepts an existing pipeline_details and appends the metrics step
+
 ### Manual metrics using metrics.send processor
 
 Use the `metrics.send` processor in your pipeline specs.
