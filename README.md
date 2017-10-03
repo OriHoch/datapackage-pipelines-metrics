@@ -9,11 +9,11 @@ Allow to gather metrics about running pipelines, combining with Grafana to visua
 <img src="https://user-images.githubusercontent.com/1198854/31110799-3e86be60-a812-11e7-873b-77619c162b5b.png" alt="example grafana dashboard" width="80%"/> (https://next.oknesset.org/grafana/dashboard/db/knesset-dataservice-pipelines?orgId=1)
 </p>
 
-Send the following measurements:
+Sends the following measurements:
 
 * `processed_row` - sent after rows were processed, tracks the number of processed rows over time
   * this metric is sent in batches of 100 rows, see below on how to modify this behavior
-* `processed_resources` - sent after each resources is done processing, sends a value of the number of rows processed
+* `processed_resources` - sent after each resource is done processing, sends a value of the number of rows processed
 
 Metrics are tagged automatically based on datapackage and resource name, or you can can provide the tags as parameters to the `metrics.send` processor.
 
@@ -35,7 +35,7 @@ Set the following environment variables to enable the plugin:
 * (optional) `DPP_INFLUXDB_DB` - Name of the InfluxDB database to send the metrics to (default = dpp)
 * (optional) `DPP_INFLUXDB_ROWS_BATCH_SIZE` - how many rows to batch together to a single metric (default = 100)
 
-If the url variable is not set - the plugin will have no effect.
+If the `DPP_INFLUXDB_URL` environment variable is not set - the plugin will have no effect.
 
 There are 2 main ways to integrate this plugin into an existing Datapackage Pipelines installation, you can also combine them, depending on what you need
 
@@ -43,20 +43,17 @@ There are 2 main ways to integrate this plugin into an existing Datapackage Pipe
 
 Uses a datapackage pipelines source spec file to inject the metrics sending processor at the end of every pipeline.
 
-To use it - just rename you existing pipeline-spec.yaml to metrics.source-spec.yaml
+To use it, rename your existing pipeline-spec.yaml to metrics.source-spec.yaml
 
-If you already use a pipeline source spec, you can easily append the metrics using the `append_metrics` function which accepts an existing pipeline_details and appends the metrics step
+If you already use a pipeline source spec, you can append the metrics using the `append_metrics` function which accepts an existing pipeline_details and appends the metrics step. You can see an example of such integration [here](https://github.com/OpenBudget/budgetkey-data-pipelines/pull/81)
 
 ### Manual metrics using metrics.send processor
 
 Use the `metrics.send` processor in your pipeline specs.
 
-By default it will tag measurements
-
 It accepts the following pipeline parameters:
   * (optional) `tags` - key-value pairs which will be used to tag the metric (default = datapackage and resource names)
   * (optional) `row-batch-size` - how many rows to batch together to a single metric (default = 100)
-
 
 ## Development
 
