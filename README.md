@@ -3,7 +3,11 @@
 [![Build Status](https://api.travis-ci.org/OriHoch/datapackage-pipelines-metrics.svg)](https://travis-ci.org/OriHoch/datapackage-pipelines-metrics)
 [![PyPI version](https://badge.fury.io/py/datapackage-pipelines-metrics.svg)](https://badge.fury.io/py/datapackage-pipelines-metrics)
 
-Allow to gather metrics about running pipelines
+Allow to gather metrics about running pipelines, combining with Grafana to visualize and produce graphs and dashboards such as this:
+
+<p align=center>
+<img src="https://user-images.githubusercontent.com/1198854/31110799-3e86be60-a812-11e7-873b-77619c162b5b.png" alt="example grafana dashboard" width="80%"/> (https://next.oknesset.org/grafana/dashboard/db/knesset-dataservice-pipelines?orgId=1)
+</p>
 
 Send the following measurements:
 
